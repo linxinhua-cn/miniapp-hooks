@@ -47,6 +47,7 @@ export interface Options extends preact.Options {
 		oldVNode?: VNode | undefined,
 		errorInfo?: ErrorInfo | undefined
 	): void;
+	unmount?(vnode: VNode);
 }
 
 export type ComponentChild =
@@ -104,24 +105,24 @@ type Ref<T> = RefObject<T> | RefCallback<T>;
 
 export interface VNode<P = {}> extends preact.VNode<P> {
 	// Redefine type here using our internal ComponentType type
-	type: string | ComponentType<P>;
-	props: P & { children: ComponentChildren };
+	type?: string | ComponentType<P>;
+	props?: P & { children: ComponentChildren };
 	ref?: Ref<any> | null;
-	_children: Array<VNode<any>> | null;
-	_parent: VNode | null;
-	_depth: number | null;
+	_children?: Array<VNode<any>> | null;
+	_parent?: VNode | null;
+	_depth?: number | null;
 	/**
 	 * The [first (for Fragments)] DOM child of a VNode
 	 */
-	_dom: PreactElement | null;
+	_dom?: PreactElement | null;
 	/**
 	 * The last dom child of a Fragment, or components that return a Fragment
 	 */
-	_nextDom: PreactElement | null;
-	_component: Component | null;
-	_hydrating: boolean | null;
-	constructor: undefined;
-	_original: number;
+	_nextDom?: PreactElement | null;
+	_component: Component | null | any;
+	_hydrating?: boolean | null;
+//	constructor: undefined;
+	_original?: number;
 }
 
 export interface Component<P = {}, S = {}> extends preact.Component<P, S> {
@@ -129,7 +130,8 @@ export interface Component<P = {}, S = {}> extends preact.Component<P, S> {
 	constructor: ComponentType<P>;
 	state: S; // Override Component["state"] to not be readonly for internal use, specifically Hooks
 	base?: PreactElement;
-
+	instance:any;
+	methods:any;
 	_dirty: boolean;
 	_force?: boolean;
 	_renderCallbacks: Array<() => void>; // Only class components

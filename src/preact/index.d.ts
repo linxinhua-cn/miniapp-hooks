@@ -9,9 +9,9 @@ export import JSX = JSXInternal;
 // -----------------------------------
 
 export interface VNode<P = {}> {
-	type: ComponentType<P> | string;
-	props: P & { children: ComponentChildren };
-	key: Key;
+	type?: ComponentType<P> | string;
+	props?: P & { children: ComponentChildren };
+	key?: Key;
 	/**
 	 * ref is not guaranteed by React.ReactElement, for compatibility reasons
 	 * with popular react libs we define it as optional too

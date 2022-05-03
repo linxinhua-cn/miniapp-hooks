@@ -6,6 +6,9 @@ const options:Options = {
     errorInfo: ErrorInfo | undefined){
         console.error(error)
         throw error;
+    },
+    _render(node:VNode){
+        node?._component?.render()
     }
 };
 
