@@ -19,8 +19,6 @@ miniapp_1.options._diff = function (vnode) {
         oldBeforeDiff(vnode);
 };
 miniapp_1.options._render = function (vnode) {
-    if (oldBeforeRender)
-        oldBeforeRender(vnode);
     currentComponent = vnode._component;
     currentIndex = 0;
     var hooks = currentComponent.__hooks;
@@ -29,6 +27,8 @@ miniapp_1.options._render = function (vnode) {
         hooks._pendingEffects.forEach(invokeEffect);
         hooks._pendingEffects = [];
     }
+    if (oldBeforeRender)
+        oldBeforeRender(vnode);
 };
 miniapp_1.options.diffed = function (vnode) {
     if (oldAfterDiff)

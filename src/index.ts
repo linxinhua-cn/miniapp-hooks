@@ -27,8 +27,6 @@ options._diff = vnode => {
 };
 
 options._render = vnode => {
-	if (oldBeforeRender) oldBeforeRender(vnode);
-
 	currentComponent = vnode._component;
 	currentIndex = 0;
 
@@ -38,6 +36,7 @@ options._render = vnode => {
 		hooks._pendingEffects.forEach(invokeEffect);
 		hooks._pendingEffects = [];
 	}
+	if (oldBeforeRender) oldBeforeRender(vnode);
 };
 
 options.diffed = (vnode:VNode) => {

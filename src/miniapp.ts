@@ -3,19 +3,6 @@ import { diff, isFunction } from "./utils"
 import {VNode} from "./preact/internal"
 
 export const options = Options
-/* type Context = {
-    instance: any | null,
-    query?: any | null | undefined,
-    isPage:boolean,
-    isComponent:boolean,
-    options?:any,
-    onInit:any,
-    didUnInit?:any,
-    methods?:any,
-    setupRender:any
-    useEffect?: (callback: () => void, depsAry?: any[]) => void,
-    useState?: (initialState: any) => any[],
-} */
 
 function setupRender(vnode:VNode) {  
     let instance = vnode?._component?.instance
@@ -65,6 +52,9 @@ export function createPage(page:any){
         const vnode: VNode<any> = {           
             props:query,
             _component:{
+                setState(){
+                    Options._render(vnode)
+                 },
             instance,
             render(){
              return  setupRender(vnode)
@@ -72,15 +62,7 @@ export function createPage(page:any){
         } }}
         vnodeAry[id]=vnode
         Options._render(vnode)
-        /*
-options._render = vnode => {
-	if (oldBeforeRender) oldBeforeRender(vnode);
 
-	currentComponent = vnode._component;
-    */
-
-        //vnodeAry[id] =createContext(instance,options,{isComponent:false})
-        //onInit(query)
         
         if (isFunction(realOnLoad)) {
             //@ts-ignore
@@ -145,6 +127,9 @@ export function createComponent(component:any){
         const vnode: VNode<any> = {           
             props:{},
             _component:{
+                setState(){
+                    Options._render(vnode)
+                 },
             instance,
             render(){
              return  setupRender(vnode)
@@ -152,8 +137,7 @@ export function createComponent(component:any){
         } }}
         vnodeAry[id]=vnode
         Options._render(vnode)
-       // contextAry[id] = createContext(instance,component,{isComponent:true})
-    
+
         if (isFunction(realOnInit)) {
             //@ts-ignore
             realOnInit.call(this);

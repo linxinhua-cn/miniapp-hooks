@@ -43,6 +43,9 @@ function createPage(page) {
         var vnode = {
             props: query,
             _component: {
+                setState: function () {
+                    options_1.default._render(vnode);
+                },
                 instance: instance,
                 render: function () {
                     return setupRender(vnode);
@@ -99,6 +102,9 @@ function createComponent(component) {
         var vnode = {
             props: {},
             _component: {
+                setState: function () {
+                    options_1.default._render(vnode);
+                },
                 instance: instance,
                 render: function () {
                     return setupRender(vnode);
