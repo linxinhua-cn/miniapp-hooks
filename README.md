@@ -8,7 +8,7 @@ $ yarn add miniapp-hooks
 # Usage
 ~~~
 import { useEffect, useState } from "miniapp-hooks";
-import { createPage, createComponent } from "miniapp-hooks/miniapp";
+import { createPage, createComponent } from "miniapp-hooks/es/miniapp";
 ~~~
 
 
@@ -16,7 +16,7 @@ import { createPage, createComponent } from "miniapp-hooks/miniapp";
 >js
 ~~~
 import { useEffect, useState } from "miniapp-hooks";
-import { createPage, createComponent } from "miniapp-hooks/miniapp";
+import { createPage, createComponent } from "miniapp-hooks/es/miniapp";
 
 Component(
   createComponent({
@@ -62,7 +62,7 @@ Component(
 >js
 ~~~
 import {useEffect, useState } from "miniapp-hooks"
-import {createPage ,createComponent } from "miniapp-hooks/miniapp"
+import {createPage ,createComponent } from "miniapp-hooks/es/miniapp"
 Page(
   createPage({
     data: {},
